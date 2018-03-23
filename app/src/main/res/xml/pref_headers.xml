@@ -1,0 +1,13 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header
+        android:fragment="de.vent_projects.ffg_planner.settings.SettingsActivity$GeneralPreferenceFragment"
+        android:icon="@drawable/ic_settings_general"
+        android:title="@string/pref_header_general" />
+
+    <header
+        android:fragment="de.vent_projects.ffg_planner.settings.SettingsActivity$DebugPreferenceFragment"
+        android:icon="@drawable/ic_settings_debug"
+        android:title="@string/pref_header_debug" />
+
+</preference-headers>

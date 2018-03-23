@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- CUSTOM STYLE VARIABLES -->
+    
+    <attr name="colorLessonPeriod" format="color"/>
+    <attr name="colorSettingIcons" format="color"/>
+    <attr name="themeNavigationDrawer" format="reference"/>
+    <attr name="colorBreak" format="color"/>
+    <attr name="themeBreak" format="reference"/>
+    <attr name="themeActionBarPopup" format="reference"/>
+    <attr name="colorNothing" format="color"/>
+    
+    <!-- LIGHT -->
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorLessonPeriod">@color/colorAccent</item>
+        <item name="colorSettingIcons">@color/colorSettingIcons</item>
+        <item name="themeNavigationDrawer">@style/AppTheme.NavigationDrawerOverlay</item>
+        <item name="colorBreak">@color/colorBreak</item>
+        <item name="themeBreak">@style/Theme.AppCompat.Light</item>
+        <item name="themeActionBarPopup">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="colorNothing">#55000000</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.NavigationDrawerOverlay" parent="AppTheme">
+        <item name="colorPrimary">?colorPrimary</item>
+    </style>
+
+    <!-- DARK -->
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
+        <item name="colorAccent">@color/colorDarkAccent</item>
+
+        <item name="colorLessonPeriod">@color/colorDarkAccent</item>
+        <item name="colorSettingIcons">@color/colorSettingIconsDark</item>
+        <item name="themeNavigationDrawer">@style/AppTheme.Dark.NavigationDrawerOverlay</item>
+        <item name="colorBreak">@color/colorBreakDark</item>
+        <item name="themeBreak">@style/Theme.AppCompat</item>
+        <item name="themeActionBarPopup">@style/ThemeOverlay.AppCompat</item>
+        <item name="colorNothing">#55ffffff</item>
+    </style>
+
+    <style name="AppTheme.Dark.NoActionBar" parent="AppTheme.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Dark.NavigationDrawerOverlay" parent="AppTheme.Dark">
+        <item name="colorPrimary">@android:color/white</item>
+    </style>
+
+    <!-- COMMON -->
+
+    <style name="AppTheme.Common.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- SETUP -->
+
+    <style name="AppTheme.Setup" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorSetupPrimary</item>
+        <item name="colorPrimaryDark">@color/colorSetupPrimaryDark</item>
+        <item name="colorAccent">@color/colorSetupAccent</item>
+        
+        <item name="android:windowBackground">@color/colorPrimary</item>
+
+        <item name="colorLessonPeriod">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Setup.ErrorAppearanceDark">
+        <item name="android:textColor">@color/colorErrorDark</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

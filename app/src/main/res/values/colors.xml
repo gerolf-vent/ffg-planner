@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#536DFE</color>
+
+    <color name="colorDarkPrimary">@color/colorPrimary</color>
+    <color name="colorDarkPrimaryDark">@color/colorPrimaryDark</color>
+    <color name="colorDarkAccent">#8C9EFF</color>
+
+    <color name="colorSetupPrimary">@color/colorPrimary</color> <!-- #C5CAE9 -->
+    <color name="colorSetupPrimaryDark">@color/colorPrimaryDark</color> <!-- #9FA8DA -->
+    <color name="colorSetupAccent">#8C9EFF</color>
+
+    <color name="colorErrorDark">#ff9800</color>
+
+    <color name="colorSettingIcons">#000000</color>
+    <color name="colorSettingIconsDark">#ffffff</color>
+
+    <color name="colorBreak">#22000000</color>
+    <color name="colorBreakDark">#22ffffff</color>
+</resources>

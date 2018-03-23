@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subject">
+        <item>Mathematik</item>
+        <item>Deutsch</item>
+        <item>Englisch</item>
+        <item>Spanisch</item>
+        <item>Sport</item>
+        <item>Sport</item>
+        <item>Sport</item>
+        <item>Geographie</item>
+        <item>Darstellendes Spiel</item>
+        <item>Geschichte</item>
+        <item>Chemie</item>
+        <item>Physik</item>
+        <item>Philosophie</item>
+        <item>Informatik</item>
+        <item>Musik</item>
+        <item>Französisch</item>
+        <item>Latein</item>
+        <item>Musikschule</item>
+        <item>Kunst</item>
+        <item>Biologie</item>
+        <item>Evangelische Religion</item>
+        <item>Katholische</item>
+        <item>Sozialkunde</item>
+        <item>AWT</item>
+        <item>Astronomie</item>
+        <item>Wahlpflicht</item>
+        <item>Klassenleiterstunde</item>
+        <item>Griechisch</item>
+        <item>Wahlpflicht Grichisch</item>
+        <item>Deutsch (Zweitsprache)</item>
+        <item>Legasthenie-Fördern</item>
+    </string-array>
+
+    <string name="lesson_spanish">Spanisch</string>
+
+    <string-array name="options_believes">
+        <item>Evangelische Religion</item>
+        <item>Katholische Religion</item>
+        <item>Philosophie</item>
+    </string-array>
+
+    <string-array name="options_languages">
+        <item>Latein</item>
+        <item>Französisch</item>
+    </string-array>
+
+    <string-array name="options_third_languages">
+        <item>Keine weitere Fremdsprache</item>
+        <item>Spanisch</item>
+        <item>Grichisch</item>
+    </string-array>
+
+    <string name="subject_suffix_remedial">-Fördern</string>
+</resources>

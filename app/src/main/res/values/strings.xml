@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Replacement</string>
+    <string name="app_name_advanced">Replacement &amp; timetable</string>
+    <string name="school_name" translatable="false">Friderico Francisceum Gymnasium</string>
+    <string name="title_activity_setup">Setup</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <!-- WORDS -->
+
+    <string name="word_lesson">Lesson</string>
+    <string name="word_replacements">Replacements</string>
+    <string name="word_free">Free</string>
+    <string name="word_error">Error</string>
+    <string name="word_break_morning">Morning break</string>
+    <string name="word_break">Break</string>
+    <string name="word_break_lunch">Lunch break</string>
+    <string name="word_weekend">Weekend</string>
+    <string name="word_attention">Attention</string>
+    <string name="word_information" translatable="false">Information</string>
+
+    <!-- HINTS -->
+
+    <string name="hint_school_class">School class</string>
+    <string name="hint_name">Name (like wn)</string>
+    <string name="hint_teacher">Teacher (like Phy)</string>
+    <string name="hint_room">Room (like 201)</string>
+
+    <!-- ACTIONS -->
+
+    <string name="action_reset">Reset</string>
+    <string name="action_update">Update</string>
+    <string name="action_current">Current</string>
+    <string name="action_replacement">Replacement</string>
+    <string name="action_schedule">Schedule</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_settings_schedule">Schedule settings</string>
+
+    <!-- BUTTONS -->
+
+    <string name="button_next">Next</string>
+    <string name="button_back">Back</string>
+    <string name="button_done">Done</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_ok" translatable="false">OK</string>
+
+    <!-- PROGRESSES -->
+
+    <string name="progress_download_schedule">Download your schedule, please wait&#8230;</string>
+    <string name="progress_adjust_schedule">Adjust your schedule, please wait&#8230;</string>
+
+    <!-- DIALOG TITLES -->
+
+    <string name="dialog_title_sorry">Sorry</string>
+    <string name="dialog_title_data_not_found">Data not found</string>
+    <string name="dialog_title_no_connection">No connection available</string>
+    <string name="dialog_title_bad_connection">Bad connection</string>
+    <string name="dialog_title_incomplete_input">Incomplete input</string>
+
+    <!-- DIALOG TEXTS -->
+
+    <string name="dialog_text_error_common">An error was thrown, please try again</string>
+    <string name="dialog_text_school_class_not_found">Sorry, I don\'t find your grade on school server</string>
+    <string name="dialog_text_check_connection">Please check your network connection</string>
+    <string name="dialog_text_connection_x_response" formatted="false">The server replies an %d error</string>
+    <string name="dialog_text_bad_connection" fomatted="false">Your internet connection is very bad, please connect with an other network</string>
+    <string name="dialog_text_please_edit_all_lessons">Please edit all lessons</string>
+    <string name="dialog_text_data_not_complete">The input data is incomplete</string>
+    <string name="dialog_text_no_reset_data_available">No reset data is available</string>
+    <string name="dialog_text_similar_to_lesson" fomatted="false">Similar to lesson %d</string>
+
+    <!-- ERROR MESSAGES -->
+
+    <string name="errors_message_school_class_under_min" formatted="false">Use a grade bigger than %d (or itself), please</string>
+    <string name="errors_message_school_class_over_max" formatted="false">Use a grade smaller than %d (or itself), please</string>
+    <string name="errors_message_school_class_no_name">Please write a class name too (like a)</string>
+    <string name="errors_message_school_class_unparseble">Please input a valid class (like 7a)</string>
+    <string name="errors_message_no_input">Please enter something</string>
+
+    <!-- MESSAGES -->
+
+    <string name="message_no_replacements">No replacements</string>
+
+    <!-- STANDART VALUES OF LESSONS AND REPLACEMENTS -->
+
+    <string name="list_period_default" translatable="false">0</string>
+    <string name="list_time_default" translatable="false">00:00</string>
+    <string name="list_name_default" translatable="false">@string/word_error</string>
+    <string name="list_teacher_default" translatable="false">-</string>
+    <string name="list_room_default" translatable="false">-</string>
+    <string name="list_info_default" translatable="false">-</string>
+
+    <string name="list_name_choose_please">Choose, please&#8230;</string>
+
+    <!-- DAYS AND WEEKS -->
+
+    <string name="week_today">Today</string>
+    <string name="week_tomorrow">Tomorrow</string>
+    <string name="week_monday">Monday</string>
+    <string name="week_tuesday">Tuesday</string>
+    <string name="week_wednesday">Wednesday</string>
+    <string name="week_thursday">Thursday</string>
+    <string name="week_friday">Friday</string>
+    <string name="week_saturday">Saturday</string>
+    <string name="week_sunday">Sunday</string>
+
+    <string name="rel_week_next">next week</string>
+    <string name="rel_week_common" formatted="false">%s in %d weeks</string>
+
+    <string-array name="week_days">
+        <item>@string/week_monday</item>
+        <item>@string/week_tuesday</item>
+        <item>@string/week_wednesday</item>
+        <item>@string/week_thursday</item>
+        <item>@string/week_friday</item>
+    </string-array>
+
+    <string-array name="rel_days">
+        <item>@string/week_today</item>
+        <item>@string/week_tomorrow</item>
+    </string-array>
+
+    <!-- SETTINGS -->
+
+    <string name="pref_header_general">General</string>
+    <string name="pref_header_debug">Developing</string>
+
+    <string name="pref_title_theme">Theme</string>
+    <string-array name="pref_theme_list_titles">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="pref_theme_list_values">
+        <item>LIGHT</item>
+        <item>DARK</item>
+    </string-array>
+
+    <!-- NOTIFICATIONS -->
+
+    <string name="notification_title_replacement_changed">Some replacement changed</string>
+    <string name="notification_text_replacement_changed">Click to see your replacement. Sorry, no detailed message is available (yet).</string>
+</resources>

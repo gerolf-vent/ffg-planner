@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:theme="@style/AppTheme.Setup"
+    tools:context="de.vent_projects.ffg_planner.setup.ui.common.SetupCommonFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_input_layout_school_class"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:errorTextAppearance="@style/AppTheme.Setup.ErrorAppearanceDark"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_language"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_max="310dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_text_school_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_school_class"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                tools:ignore="Deprecated" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinner_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_believe"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_layout_school_class"
+            app:layout_constraintStart_toStartOf="@+id/text_input_layout_school_class"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_layout_school_class" />
+
+        <Spinner
+            android:id="@+id/spinner_believe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dropdown"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_third_language"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_language"
+            app:layout_constraintStart_toStartOf="@+id/spinner_language"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_language" />
+
+        <Spinner
+            android:id="@+id/spinner_third_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dropdown"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_believe"
+            app:layout_constraintStart_toStartOf="@+id/spinner_believe"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_believe" />
+
+        <!--<CheckBox
+            android:id="@+id/checkbox_is_spanish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/lesson_spanish"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_believe"
+            app:layout_constraintStart_toStartOf="@+id/spinner_believe"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_believe" />-->
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vertretung</string>
+    <string name="app_name_advanced">Vertretung &amp; Stundenplan</string>
+    <string name="title_activity_setup">Setup</string>
+    <string name="title_activity_settings">Einstellungen</string>
+
+    <!-- WORDS -->
+
+    <string name="word_lesson">Stunde</string>
+    <string name="word_replacements">Vertretungen</string>
+    <string name="word_free">Frei</string>
+    <string name="word_error">Fehler</string>
+    <string name="word_break_morning">Frühstückspause</string>
+    <string name="word_break">Pause</string>
+    <string name="word_break_lunch">Mittagspause</string>
+    <string name="word_weekend">Wochenende</string>
+    <string name="word_attention">Achtung</string>
+
+    <!-- HINTS -->
+
+    <string name="hint_school_class">Klasse</string>
+    <string name="hint_name">Name (z.B. wn)</string>
+    <string name="hint_teacher">Lehrer (z.B. Phy)</string>
+    <string name="hint_room">Raum (z.B. 201)</string>
+
+    <!-- ACTIONS -->
+
+    <string name="action_reset">Zurücksetzen</string>
+    <string name="action_update">Aktualisieren</string>
+    <string name="action_current">Aktuell</string>
+    <string name="action_replacement">Vertretungen</string>
+    <string name="action_schedule">Stundenplan</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_settings_schedule">Stundenplan konfigurieren</string>
+
+    <!-- BUTTONS -->
+
+    <string name="button_next">Weiter</string>
+    <string name="button_back">Zurück</string>
+    <string name="button_done">Fertig</string>
+    <string name="button_cancel">Abbrechen</string>
+
+    <!-- PROGRESSES -->
+
+    <string name="progress_download_schedule">Lade deinen Stundenplan herunter&#8230;</string>
+    <string name="progress_adjust_schedule">Dein Stundenplan wird angepasst&#8230;</string>
+
+    <!-- DIALOG TITLES -->
+
+    <string name="dialog_title_sorry">Sorry</string>
+    <string name="dialog_title_data_not_found">Daten nicht gefunden</string>
+    <string name="dialog_title_no_connection">Keine Verbindung verfügbar</string>
+    <string name="dialog_title_bad_connection">Schlechte Verbingung</string>
+    <string name="dialog_title_incomplete_input">Unvollständige Eingaben</string>
+
+    <!-- DIALOG TEXTS -->
+
+    <string name="dialog_text_error_common">Leider ist etwas schiefgegangen, bitte versuche es nochmal</string>
+    <string name="dialog_text_school_class_not_found">Deine Klasse ist nicht auf dem Schulserver vorhanden</string>
+    <string name="dialog_text_check_connection">Bitte überprüfe deine Internetverbindung</string>
+    <string name="dialog_text_connection_x_response" formatted="false">Der Server gibt den Fehler %d zurück, bitte versuche es nochmal</string>
+    <string name="dialog_text_bad_connection" fomatted="false">Die Internetverbindung ist sehr schlecht, bitte stelle eine Verbingung zu einem besseren Netzwerk her</string>
+    <string name="dialog_text_please_edit_all_lessons">Bitte bearbeite alle Unterrichtsstunden</string>
+    <string name="dialog_text_data_not_complete">Die eingegebenen Daten sind nicht vollständig</string>
+    <string name="dialog_text_no_reset_data_available">Keine Daten zum zurücksetzen vohanden</string>
+    <string name="dialog_text_similar_to_lesson" fomatted="false">Identisch mit Stunde %d</string>
+
+    <!-- ERROR MESSAGES -->
+
+    <string name="errors_message_school_class_under_min" formatted="false">Bitte eine Klasse, die gößer oder geich %d ist, angeben</string>
+    <string name="errors_message_school_class_over_max" formatted="false">Bitte eine Klasse, die kleiner oder geich %d ist, angeben</string>
+    <string name="errors_message_school_class_no_name">Bitte den Klassennamen eingeben (z.B. a)</string>
+    <string name="errors_message_school_class_unparseble">Bitte gebe eine gültige Klassenbezeichnung ein (z.B. 7a)</string>
+    <string name="errors_message_no_input">Bitte gib etwas ein</string>
+
+    <!-- MESSAGES -->
+
+    <string name="message_no_replacements">Keine Vertretungen</string>
+
+    <!-- STANDART VALUES OF LESSONS AND REPLACEMENTS -->
+
+    <string name="list_name_choose_please">Bitte wählen&#8230;</string>
+
+    <!-- DAYS AND WEEKS -->
+
+    <string name="week_friday">Freitag</string>
+    <string name="week_monday">Montag</string>
+    <string name="week_saturday">Samstag</string>
+    <string name="week_sunday">Sonntag</string>
+    <string name="week_thursday">Donnerstag</string>
+    <string name="week_today">Heute</string>
+    <string name="week_tomorrow">Morgen</string>
+    <string name="week_tuesday">Dienstag</string>
+    <string name="week_wednesday">Mittwoch</string>
+
+    <string name="rel_week_next">Nächste Woche</string>
+    <string name="rel_week_common" formatted="false">%s in %d Wochen</string>
+
+    <!-- SETTINGS -->
+
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_header_debug">Entwicklung</string>
+
+    <string name="pref_title_theme">Theme</string>
+    <string-array name="pref_theme_list_titles">
+        <item>Hell</item>
+        <item>Dunkel</item>
+    </string-array>
+
+    <!-- NOTIFICATIONS -->
+
+    <string name="notification_title_replacement_changed">Der Vertretungsplan hat sich geändert</string>
+    <string name="notification_text_replacement_changed">Clicken um den Vertretungsplan anzuzeigen. Sorry, momentan gibt es hier noch keine näheren Infos.</string>
+</resources>

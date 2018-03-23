@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subject_abbreviations" translatable="false">
+        <item>ma</item>
+        <item>d</item>
+        <item>en</item>
+        <item>spa</item>
+        <item>sp</item>
+        <item>sm</item>
+        <item>sw</item>
+        <item>geo</item>
+        <item>dsp</item>
+        <item>ge</item>
+        <item>ch</item>
+        <item>phy</item>
+        <item>phi</item>
+        <item>if</item>
+        <item>mu</item>
+        <item>fr</item>
+        <item>la</item>
+        <item>kms</item>
+        <item>ku</item>
+        <item>bio</item>
+        <item>evr</item>
+        <item>kar</item>
+        <item>sk</item>
+        <item>awt</item>
+        <item>as</item>
+        <item>wpfp</item>
+        <item>klst</item>
+        <item>gr</item>
+        <item>wpgr</item>
+        <item>daz</item>
+        <item>lrs</item>
+    </string-array>
+    <string-array name="subject">
+        <item>Mathematics</item>
+        <item>German</item>
+        <item>English</item>
+        <item>Spanish</item>
+        <item>Sports</item>
+        <item>Sports</item>
+        <item>Sports</item>
+        <item>Geography</item>
+        <item>Drama</item>
+        <item>History</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Ethics</item>
+        <item>Computer science</item>
+        <item>Music</item>
+        <item>French</item>
+        <item>Latin</item>
+        <item>Instrumental lessons</item>
+        <item>Art</item>
+        <item>Biology</item>
+        <item>Protestant religious education</item>
+        <item>Catholic religious education</item>
+        <item>Social studies</item>
+        <item>Industrial engineering</item>
+        <item>Astronomy</item>
+        <item>Compulsory</item>
+        <item>Class leader</item>
+        <item>Greek</item>
+        <item>Compulsory greek</item>
+        <item>German (second language)</item>
+        <item>Dyslexia remedial</item>
+    </string-array>
+
+    <string name="lesson_spanish">Spanish</string>
+    <string name="lesson_spanish_abbreviation" translatable="false">Spa</string>
+
+    <string-array name="options_believes">
+        <item>Protestant religion</item>
+        <item>Catholic religion</item>
+        <item>Philosophy</item>
+    </string-array>
+    <string-array name="options_believes_values" translatable="false">
+        <item>EvR</item>
+        <item>KaR</item>
+        <item>Phi</item>
+    </string-array>
+
+    <string-array name="options_languages">
+        <item>Latin</item>
+        <item>French</item>
+    </string-array>
+    <string-array name="options_languages_values" translatable="false">
+        <item>La</item>
+        <item>Fr</item>
+    </string-array>
+
+    <string-array name="options_third_languages">
+        <item>No other language</item>
+        <item>Spanish</item>
+        <item>Greek</item>
+    </string-array>
+    <string-array name="options_third_languages_values" translatable="false">
+        <item>none</item>
+        <item>Spa</item>
+        <item>Gr</item>
+    </string-array>
+
+    <string name="subject_suffix_remedial"> remedial</string>
+</resources>
