@@ -5,7 +5,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId 'de.vent_projects.ffg_planner'
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 5
         versionName '3.0'
