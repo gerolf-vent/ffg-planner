@@ -6,14 +6,20 @@ import java.util.Date;
 
 import de.vent_projects.ffg_planner.settings.SettingsManager;
 
+/**
+ * Dieser SettingsManager kümmert sich um die Einstellungen des Downloadbereiches.
+ * Er ist ein Wrapper für die SharedPreferences und bietet spezielle Abfragemöglichkeiten.
+ */
+
 public class DownloadSettingsManager extends SettingsManager {
 
     public DownloadSettingsManager(Context context) {
         super(context);
     }
 
-    // Schedule validity and upload date
+    // STUNDENPLAN DATEN
 
+    // Diese Funktionen sind für das Hochlade-Datum zuständig.
     public Date getScheduleUploadDate() {
         long date = getSharedPreferences().getLong("download_upload_date", 0);
         return date != 0 ? new Date(date) : null;
@@ -26,6 +32,7 @@ public class DownloadSettingsManager extends SettingsManager {
         }
     }
 
+    // Diese Funktionen sind für das Gültigkeits-Datum zuständig, welches das Inkrafttreten des Stundenplans angibt.
     public Date getScheduleValidityDate() {
         long date = getSharedPreferences().getLong("download_validity_date", 0);
         return date != 0 ? new Date(date) : null;
@@ -37,4 +44,6 @@ public class DownloadSettingsManager extends SettingsManager {
             getSharedPreferencesEditor().putLong("download_validity_date", date.getTime()).apply();
         }
     }
+
+    // TODO: Eine Funktion für das löschen von Hochlade- und Gültigkeits-Datum implementieren und im DownloadScheduleManager einfügen
 }

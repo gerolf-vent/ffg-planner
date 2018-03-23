@@ -7,6 +7,17 @@ import io.realm.annotations.RealmClass;
 import static de.vent_projects.ffg_planner.CommonUtils.getTrimmedString;
 import static de.vent_projects.ffg_planner.CommonUtils.isStringBlank;
 
+/**
+ * Die DownloadLesson ist nur für den Download des Stundenplans relevant.
+ * Dabei sind alle Eigenschaften einer normalen Schulstunde enthalten.
+ *
+ * Wichtig für Realm: Es gibt keinen primary key, damit auch für 11/12 Klasse mehrere Stunden zur gleichen
+ * Zeit abgespeichert werden können.
+ *
+ * Auch gibt es keine B-Stunden, da diese erst im Setup (mit dem de.vent_projects.ffg_planner.schedule.transferer.ScheduleTransferer)
+ * miteinander verknüpft werden.
+ */
+
 @RealmClass
 public class DownloadLesson extends RealmObject {
     @Index
@@ -66,7 +77,7 @@ public class DownloadLesson extends RealmObject {
         this.room = room;
     }
 
-    // SOME STANDARD IMPLEMENTATION
+    // EINIGE STANDARD IMPLEMENTATIONEN
 
     @Override
     public boolean equals(Object obj) {

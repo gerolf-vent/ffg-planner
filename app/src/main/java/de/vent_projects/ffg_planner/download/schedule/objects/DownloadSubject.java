@@ -6,6 +6,14 @@ import io.realm.annotations.RealmClass;
 import static de.vent_projects.ffg_planner.CommonUtils.getNumberInString;
 import static de.vent_projects.ffg_planner.CommonUtils.getTrimmedString;
 
+/**
+ * Das DownloadSubject ist nur für den Download des Stundenplanes relevant.
+ * Dabei sind alle Eigenschaften eines normalen Faches enthalten. Da jedoch je nach Zeit der Raum des gleichen Faches variieren
+ * kann, ist er in der Stunde abgespeichert.
+ *
+ * Wichtig für Realm: Es ist kein primary key vorhanden, damit für jede DownloadLesson ein eigenes DownloadSubject besitzt.
+ */
+
 @RealmClass
 public class DownloadSubject extends RealmObject {
     private String name;
@@ -37,7 +45,7 @@ public class DownloadSubject extends RealmObject {
         this.teacher = teacher;
     }
 
-    // SOME STANDARD IMPLEMENTATION
+    // EINIGE STANDARD IMPLEMENTATIONEN
 
     @Override
     public boolean equals(Object obj) {
