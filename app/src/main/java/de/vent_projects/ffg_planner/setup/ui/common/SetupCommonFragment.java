@@ -190,11 +190,11 @@ public class SetupCommonFragment extends SetupFragment implements SetupFragmentI
         this.spinnerThirdLanguage.setVisibility(View.GONE);
         if (gradeMatcher.find()) {
             Integer match = Integer.parseInt(gradeMatcher.group());
-            if (match < SchoolClass.MINGRADE) {
-                this.textInputLayoutSchoolClass.setError(String.format(getString(R.string.errors_message_school_class_under_min), SchoolClass.MINGRADE));
+            if (match < SchoolClass.MIN_GRADE) {
+                this.textInputLayoutSchoolClass.setError(String.format(getString(R.string.errors_message_school_class_under_min), SchoolClass.MIN_GRADE));
                 settingsManager.setSchoolClass(null);
-            } else if (match > SchoolClass.MAXGRADE) {
-                this.textInputLayoutSchoolClass.setError(String.format(getString(R.string.errors_message_school_class_over_max), SchoolClass.MAXGRADE));
+            } else if (match > SchoolClass.MAX_GRADE) {
+                this.textInputLayoutSchoolClass.setError(String.format(getString(R.string.errors_message_school_class_over_max), SchoolClass.MAX_GRADE));
                 settingsManager.setSchoolClass(null);
             } else {
                 grade = match;

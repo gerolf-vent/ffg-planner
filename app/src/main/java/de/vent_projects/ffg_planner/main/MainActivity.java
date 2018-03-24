@@ -45,8 +45,8 @@ import io.realm.Realm;
 import static android.os.Build.VERSION.SDK_INT;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private MainSwipeRefreshLayout swipeRefreshLayout;
     private ViewPager viewPagerCurrent;
     private Spinner spinnerCurrent;
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MainReplacementRecyclerView recyclerViewReplacement;
     private ViewPager viewPagerSchedule;
     private Spinner spinnerSchedule;
-
     private MainSections activeSection;
     private MainScheduleManager scheduleManager;
 
@@ -203,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     scrollView = getCurrentView().findViewWithTag("scrollview_current_" + getCurrentView().getCurrentItem());
                 } else if (getActiveSection() == MainSections.REPLACEMENT && getReplacementView() != null) {
                     RecyclerView recyclerView = getReplacementView();
-                    return recyclerView != null && recyclerView.getScrollY() > 0;
+                    return recyclerView.getScrollY() > 0;
                 }
                 return scrollView == null || scrollView.getScrollY() > 0;
             }
@@ -236,13 +235,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         switch (activeSection) {
-            case "CURRENT": showCurrentView();
+            case "CURRENT":
+                showCurrentView();
                 navigationView.setCheckedItem(R.id.nav_current);
                 break;
-            case "REPLACEMENT": showReplacementView();
+            case "REPLACEMENT":
+                showReplacementView();
                 navigationView.setCheckedItem(R.id.nav_replacement);
                 break;
-            case "SCHEDULE": showScheduleView();
+            case "SCHEDULE":
+                showScheduleView();
                 navigationView.setCheckedItem(R.id.nav_schedule);
                 break;
         }
@@ -316,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void updateReplacementData() {
-        new ReplacementManager(getApplicationContext()).downloadReplacementFromServerAsyc(new DownloadReplacementListener() {
+        new ReplacementManager(getApplicationContext()).downloadReplacementFromServerAsync(new DownloadReplacementListener() {
             @Override
             public void onFinished() {
                 MainActivity.this.runOnUiThread(new Runnable() {
@@ -352,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MainSections getActiveSection() {
         return this.activeSection;
     }
+
     public void setActiveSection(MainSections activeSection) {
         this.activeSection = activeSection;
         this.swipeRefreshLayout.setCurrentMode(activeSection);
@@ -360,16 +363,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private View getActiveSectionView() {
         if (getActiveSection() == null) return null;
         switch (getActiveSection().name()) {
-            case "CURRENT": return getCurrentView();
-            case "REPLACEMENT": return getReplacementContainerView();
-            case "SCHEDULE": return getScheduleView();
-            default: return null;
+            case "CURRENT":
+                return getCurrentView();
+            case "REPLACEMENT":
+                return getReplacementContainerView();
+            case "SCHEDULE":
+                return getScheduleView();
+            default:
+                return null;
         }
     }
 
-    private ViewPager getCurrentView(){
+    private ViewPager getCurrentView() {
         return this.viewPagerCurrent;
     }
+
     private void showCurrentView() {
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.spinnerSchedule.setVisibility(View.GONE);
@@ -383,9 +391,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private View getReplacementContainerView() {
         return this.containerReplacement;
     }
+
     private MainReplacementRecyclerView getReplacementView() {
         return this.recyclerViewReplacement;
     }
+
     private void showReplacementView() {
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayShowTitleEnabled(true);
         spinnerCurrent.setVisibility(View.GONE);
@@ -396,9 +406,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setActiveSection(MainSections.REPLACEMENT);
     }
 
-    private ViewPager getScheduleView(){
+    private ViewPager getScheduleView() {
         return this.viewPagerSchedule;
     }
+
     private void showScheduleView() {
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.spinnerCurrent.setVisibility(View.GONE);
@@ -410,7 +421,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void crossfadeViews(final View hide, View show) {
-        if (show != null && !show.equals(hide)){
+        if (show != null && !show.equals(hide)) {
             show.setAlpha(0f);
             show.setVisibility(View.VISIBLE);
             show.animate()
