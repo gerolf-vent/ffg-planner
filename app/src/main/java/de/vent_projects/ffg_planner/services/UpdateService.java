@@ -27,6 +27,42 @@ public class UpdateService extends ServiceManager {
         super(context);
     }
 
+    private static void updateReplacement(final Context context) {
+        final ReplacementManager replacementManager = new ReplacementManager(context);
+        final List<DateReplacement> oldDateReplacements = replacementManager.getAllDateReplacements();
+        replacementManager.downloadReplacementFromServerAsync(new DownloadReplacementListener() {
+            @Override
+            public void onFinished() {
+                notifyUserAboutNewReplacement(context, oldDateReplacements, replacementManager.getAllDateReplacements());
+            }
+
+            @Override
+            public void onNoNetworkAvailable() {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+    }
+
+    private static void notifyUserAboutNewReplacement(Context context, List<DateReplacement> oldDateReplacements, List<DateReplacement> newDateReplacements) {
+        ReplacementChangesCalculator replacementChangesCalculator = new ReplacementChangesCalculator(oldDateReplacements, newDateReplacements);
+        if (replacementChangesCalculator.getAddedDateReplacements().size() > 0 || replacementChangesCalculator.getChangedDateReplacements().size() > 0) {
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, "replacements");
+            notificationBuilder.setSmallIcon(R.drawable.ic_school);
+            notificationBuilder.setContentTitle(context.getString(R.string.notification_title_replacement_changed));
+            notificationBuilder.setContentText(context.getString(R.string.notification_text_replacement_changed));
+            Intent replacementIntent = new Intent(context, MainActivity.class);
+            replacementIntent.putExtra("active_section", MainSections.REPLACEMENT.name());
+            PendingIntent clickedReplacementIntent = PendingIntent.getActivities(context, 0, new Intent[]{replacementIntent}, PendingIntent.FLAG_UPDATE_CURRENT);
+            notificationBuilder.setContentIntent(clickedReplacementIntent);
+            new NotificationManager(context).notify(123, notificationBuilder);
+        }
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -73,42 +109,6 @@ public class UpdateService extends ServiceManager {
     @Override
     protected int getID() {
         return 10101010;
-    }
-
-    private static void updateReplacement(final Context context) {
-        final ReplacementManager replacementManager = new ReplacementManager(context);
-        final List<DateReplacement> oldDateReplacements = replacementManager.getAllDateReplacements();
-        replacementManager.downloadReplacementFromServerAsyc(new DownloadReplacementListener() {
-            @Override
-            public void onFinished() {
-                notifyUserAboutNewReplacement(context, oldDateReplacements, replacementManager.getAllDateReplacements());
-            }
-
-            @Override
-            public void onNoNetworkAvailable() {
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-    }
-
-    private static void notifyUserAboutNewReplacement(Context context, List<DateReplacement> oldDateReplacements, List<DateReplacement> newDateReplacements) {
-        ReplacementChangesCalculator replacementChangesCalculator = new ReplacementChangesCalculator(oldDateReplacements, newDateReplacements);
-        if (replacementChangesCalculator.getAddedDateReplacements().size() > 0 || replacementChangesCalculator.getChangedDateReplacements().size() > 0) {
-            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, "replacements");
-            notificationBuilder.setSmallIcon(R.drawable.ic_school);
-            notificationBuilder.setContentTitle(context.getString(R.string.notification_title_replacement_changed));
-            notificationBuilder.setContentText(context.getString(R.string.notification_text_replacement_changed));
-            Intent replacementIntent = new Intent(context, MainActivity.class);
-            replacementIntent.putExtra("active_section", MainSections.REPLACEMENT.name());
-            PendingIntent clickedReplacementIntent = PendingIntent.getActivities(context, 0, new Intent[]{replacementIntent}, PendingIntent.FLAG_UPDATE_CURRENT);
-            notificationBuilder.setContentIntent(clickedReplacementIntent);
-            new NotificationManager(context).notify(123, notificationBuilder);
-        }
     }
 
     @RequiresApi(21)

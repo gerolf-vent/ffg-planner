@@ -4,17 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SchoolClass{
-    public static final int MINGRADE = 7;
-    public static final int MAXGRADE = 12;
+    public static final int MIN_GRADE = 7;
+    public static final int MAX_GRADE = 12;
 
     private int grade;
     private Character name;
 
     public SchoolClass(int grade, Character name){
-        if (grade < MINGRADE){
-            this.grade = MINGRADE;
-        } else if (grade > MAXGRADE){
-            this.grade = MAXGRADE;
+        if (grade < MIN_GRADE) {
+            this.grade = MIN_GRADE;
+        } else if (grade > MAX_GRADE) {
+            this.grade = MAX_GRADE;
         }else {
             this.grade = grade;
         }
@@ -25,10 +25,10 @@ public class SchoolClass{
         Matcher gradeMatcher = Pattern.compile("[0-9]+").matcher(schoolClass);
         if (gradeMatcher.find()){
             Integer match = Integer.parseInt(gradeMatcher.group());
-            if (match < MINGRADE){
-                this.grade = MINGRADE;
-            } else if (match > MAXGRADE){
-                this.grade = MAXGRADE;
+            if (match < MIN_GRADE) {
+                this.grade = MIN_GRADE;
+            } else if (match > MAX_GRADE) {
+                this.grade = MAX_GRADE;
             }else {
                 this.grade = match;
             }
@@ -39,7 +39,7 @@ public class SchoolClass{
                 this.name = 'a';
             }
         }else{
-            this.grade = MINGRADE;
+            this.grade = MIN_GRADE;
             this.name = 'a';
         }
     }

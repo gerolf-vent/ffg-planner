@@ -21,11 +21,15 @@ public abstract class ServiceManager extends Service {
         this.context = context;
     }
 
+    public static void manageServices() {
+
+    }
+
     public void manageService() {
         if (Build.VERSION.SDK_INT >= 21) {
             JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
             if (scheduler == null) {
-                // TODO: Error
+                //TODO: Error
                 return;
             }
             boolean jobRunning = false;
@@ -49,10 +53,6 @@ public abstract class ServiceManager extends Service {
                 alarmManager.cancel(this.getServiceIntent());
             }
         }
-    }
-
-    public static void manageServices() {
-
     }
 
     // SERVICE

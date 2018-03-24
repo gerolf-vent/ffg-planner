@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
@@ -72,7 +73,7 @@ public class ReplacementManager {
 
     // DOWNLOAD REPLACEMENTS
 
-    private void downloadReplacementFromServer(DownloadReplacementListener listener){
+    private void downloadReplacementFromServer(DownloadReplacementListener listener) {
         Calendar calendar = new TimeManager(this.context).getCalendar();
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -85,14 +86,14 @@ public class ReplacementManager {
             URL url = new URL("http://www.ffg-dbr.de/plaene/vertretungsplan/vplan_links.php");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
-                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK){
+                if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     InputStream responseData;
                     responseData = urlConnection.getInputStream();
                     BufferedReader r = new BufferedReader(new InputStreamReader(responseData));
                     String x;
                     x = r.readLine();
                     String responseString = "";
-                    while(x != null){
+                    while (x != null) {
                         responseString += x;
                         x = r.readLine();
                     }
@@ -103,12 +104,12 @@ public class ReplacementManager {
                     Matcher href;
                     Matcher date;
                     String match;
-                    while(matches.find()){
+                    while (matches.find()) {
                         match = matches.group();
                         href = patternHref.matcher(match);
                         if (href.find()) {
                             date = patternDate.matcher(match);
-                            if (date.find()){
+                            if (date.find()) {
                                 links.put(date.group(), href.group());
                             }
                         }
@@ -117,7 +118,7 @@ public class ReplacementManager {
             } finally {
                 urlConnection.disconnect();
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -125,7 +126,7 @@ public class ReplacementManager {
             for (Map.Entry<String, String> link : links.entrySet()) {
                 if (!isValidDateString(link.getKey())) continue;
                 Calendar then = CommonUtils.toCalendar(link.getKey());
-                if (then != null && then.after(calendar)){
+                if (then != null && then.after(calendar)) {
                     downloadReplacementForDateFromServer(link.getKey(), link.getValue());
                 }
             }
@@ -136,115 +137,149 @@ public class ReplacementManager {
         }
     }
 
-    private void downloadReplacementForDateFromServer(String date, String XMLFile) throws Exception {
-        Log.d("Download", "Date: " + date + ", File: " + XMLFile);
-        DateReplacement dateReplacement = new DateReplacement(date);
-        String subjectPattern = this.getSubjectPattern();
-        URL url = new URL("http://www.ffg-dbr.de/plaene/vertretungsplan/"+XMLFile);
+    private InputStream getVertretungsplanInputStream(String date, String xmlFile) throws IOException {
+        Log.d("Download", "Date: " + date + ", File: " + xmlFile);
+        URL url = new URL("http://www.ffg-dbr.de/plaene/vertretungsplan/" + xmlFile);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                InputStream responseData = urlConnection.getInputStream();
-                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                XmlPullParser xpp = factory.newPullParser();
-
-                if (responseData != null) {
-                    xpp.setInput(responseData, "UTF-8");
-                    int eventType = xpp.getEventType();
-                    String text = "";
-
-                    String period = "";
-                    String name = "";
-                    boolean nameChanged = false;
-                    String teacher = "";
-                    boolean teacherChanged = false;
-                    String room = "";
-                    boolean roomChanged = false;
-                    String info = "";
-                    String schoolClass = "";
-                    String dayInfo = "";
-
-                    while (eventType != XmlPullParser.END_DOCUMENT) {
-                        String tagname = xpp.getName();
-                        if (eventType == XmlPullParser.START_TAG) {
-                            if (tagname.equals("aktion")) {
-                                // Maybe empty all holders
-                            } else if (tagname.equals("fach")) {
-                                nameChanged = xpp.getAttributeValue(null, "fageaendert") != null;
-                            } else if (tagname.equals("tehrer")) {
-                                teacherChanged = xpp.getAttributeValue(null, "legeaendert") != null;
-                            } else if (tagname.equals("raum")) {
-                                roomChanged = xpp.getAttributeValue(null, "rageaendert") != null;
-                            }
-                        } else if (eventType == XmlPullParser.TEXT) {
-                            text = xpp.getText();
-                        } else if (eventType == XmlPullParser.END_TAG) {
-                            switch (tagname) {
-                                case "aktion":
-                                    if (schoolClass.matches(subjectPattern) && !this.isReplacementWithInfoIgnored(info)) {
-                                        if (period.contains("-")) {
-                                            int minPeriod = Integer.parseInt(period.split("-")[0]);
-                                            int maxPeriod = Integer.parseInt(period.split("-")[1]);
-                                            for (int i = minPeriod; i <= maxPeriod; i++) {
-                                                dateReplacement.addReplacement(new Replacement(date, i, name, nameChanged, teacher, teacherChanged, room, roomChanged, info, schoolClass));
-                                            }
-                                        } else {
-                                            dateReplacement.addReplacement(new Replacement(date, Integer.parseInt(period), name, nameChanged, teacher, teacherChanged, room, roomChanged, info, schoolClass));
-                                        }
-                                    }
-                                    break;
-                                case "stunde": period = text; break;
-                                case "fach": name = text; break;
-                                case "lehrer": teacher = text; break;
-                                case "raum": room = text; break;
-                                case "info": info = text; break;
-                                case "klasse": schoolClass = text; break;
-                                case "titel": dateReplacement.setTitle(text); break;
-                                case "aenderungk": dateReplacement.setSchoolClasses(text); break;
-                                case "datum": dateReplacement.setLastChanges(text); break;
-                                case "fussinfo": dayInfo += text.trim() + "\n"; break;
-                            }
-                        }
-                        eventType = xpp.next();
-                    }
-                    dateReplacement.setInfo(dayInfo);
-                    Realm realm = getRealm();
-                    realm.beginTransaction();
-                    realm.copyToRealmOrUpdate(dateReplacement);
-                    realm.commitTransaction();
-                }
-            }
-        } catch (Exception e){
-            urlConnection.disconnect();
-            throw e;
+        InputStream urlConnectionInputStream = null;
+        if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            urlConnectionInputStream = urlConnection.getInputStream();
         }
         urlConnection.disconnect();
+        return urlConnectionInputStream;
+    }
+
+    /**
+     * TODO parameter vereinfachen
+     *
+     * @param date
+     * @param xmlFile
+     * @throws Exception
+     */
+    private void downloadReplacementForDateFromServer(String date, String xmlFile) throws IOException, XmlPullParserException {
+        try (InputStream responseDataInputStream = this.getVertretungsplanInputStream(date, xmlFile)) {
+            DateReplacement dateReplacement = new DateReplacement(date);
+            String subjectPattern = this.getSubjectPattern();
+
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+
+            if (responseDataInputStream != null) {
+                xpp.setInput(responseDataInputStream, "UTF-8");
+                int eventType = xpp.getEventType();
+                String text = "";
+
+                String period = "";
+                String name = "";
+                boolean nameChanged = false;
+                String teacher = "";
+                boolean teacherChanged = false;
+                String room = "";
+                boolean roomChanged = false;
+                String info = "";
+                String schoolClass = "";
+                StringBuilder dayInfo = new StringBuilder();
+
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    String tagName = xpp.getName();
+                    if (eventType == XmlPullParser.START_TAG) {
+                        if (tagName.equals("aktion")) {
+                            // Maybe empty all holders
+                        } else if (tagName.equals("fach")) {
+                            nameChanged = xpp.getAttributeValue(null, "fageaendert") != null;
+                        } else if (tagName.equals("tehrer")) {
+                            teacherChanged = xpp.getAttributeValue(null, "legeaendert") != null;
+                        } else if (tagName.equals("raum")) {
+                            roomChanged = xpp.getAttributeValue(null, "rageaendert") != null;
+                        }
+                    } else if (eventType == XmlPullParser.TEXT) {
+                        text = xpp.getText();
+                    } else if (eventType == XmlPullParser.END_TAG) {
+                        switch (tagName) {
+                            case "aktion":
+                                if (schoolClass.matches(subjectPattern) && !this.isReplacementWithInfoIgnored(info)) {
+                                    if (period.contains("-")) {
+                                        int minPeriod = Integer.parseInt(period.split("-")[0]);
+                                        int maxPeriod = Integer.parseInt(period.split("-")[1]);
+                                        for (int i = minPeriod; i <= maxPeriod; i++) {
+                                            dateReplacement.addReplacement(new Replacement(date, i, name, nameChanged, teacher, teacherChanged, room, roomChanged, info, schoolClass));
+                                        }
+                                    } else {
+                                        dateReplacement.addReplacement(new Replacement(date, Integer.parseInt(period), name, nameChanged, teacher, teacherChanged, room, roomChanged, info, schoolClass));
+                                    }
+                                }
+                                break;
+                            case "stunde":
+                                period = text;
+                                break;
+                            case "fach":
+                                name = text;
+                                break;
+                            case "lehrer":
+                                teacher = text;
+                                break;
+                            case "raum":
+                                room = text;
+                                break;
+                            case "info":
+                                info = text;
+                                break;
+                            case "klasse":
+                                schoolClass = text;
+                                break;
+                            case "titel":
+                                dateReplacement.setTitle(text);
+                                break;
+                            case "aenderungk":
+                                dateReplacement.setSchoolClasses(text);
+                                break;
+                            case "datum":
+                                dateReplacement.setLastChanges(text);
+                                break;
+                            case "fussinfo":
+                                dayInfo.append(text.trim()).append("\n");
+                                break;
+                        }
+                    }
+                    eventType = xpp.next();
+                }
+                dateReplacement.setInfo(dayInfo.toString());
+                Realm realm = getRealm();
+                realm.beginTransaction();
+                realm.copyToRealmOrUpdate(dateReplacement);
+                realm.commitTransaction();
+            }
+        }
     }
 
     private String getSubjectPattern() {
         RealmResults<MainSubject> names = new MainScheduleManager(this.context).getAllSubjects();
         SchoolClass schoolClass = new MainSettingsManager(this.context).getSchoolClass();
-        String subjectPattern = "";
+        StringBuilder subjectPattern = new StringBuilder();
         if (schoolClass.isUpperLevel()) {
-            subjectPattern += "(" + schoolClass.gradeToString() + "\\s*/\\s*([A-Z]-)?(";
+            subjectPattern.append("(").append(schoolClass.gradeToString()).append("\\s*/\\s*([A-Z]-)?(");
             boolean hyphen = false;
             for (int i = 0; i < names.size(); i++) {
                 if (hyphen) {
-                    subjectPattern += "|";
+                    subjectPattern.append("|");
                 } else {
                     hyphen = true;
                 }
-                subjectPattern += names.get(i).getName();
+                subjectPattern.append(names.get(i).getName());
             }
-            subjectPattern += "))";
+            subjectPattern.append("))");
         } else {
-            subjectPattern = ".*" + schoolClass.toString() + ".*";
+            subjectPattern = new StringBuilder(".*" + schoolClass.toString() + ".*");
         }
-        return subjectPattern;
+        return subjectPattern.toString();
     }
 
     private boolean isReplacementWithInfoIgnored(String info) {
         return info.matches("(\\s*Känguru-Wettbewerb\\s*|\\s*Mathematikolympiade\\s*)");
+    }
+
+    public void downloadReplacementFromServerAsync(DownloadReplacementListener listener) {
+        new DownloadReplacementAsyncTask(this, listener).execute();
     }
 
     private static class DownloadReplacementAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -258,7 +293,7 @@ public class ReplacementManager {
             this.connectivityManager = (ConnectivityManager) replacementManager.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         }
 
-        public Void doInBackground(Void ...voids) {
+        public Void doInBackground(Void... voids) {
             if (connectivityManager == null ||
                     connectivityManager.getActiveNetworkInfo() == null ||
                     !connectivityManager.getActiveNetworkInfo().isConnected()) {
@@ -269,9 +304,5 @@ public class ReplacementManager {
             this.replacementManager.downloadReplacementFromServer(this.listener);
             return null;
         }
-    }
-
-    public void downloadReplacementFromServerAsyc(DownloadReplacementListener listener) {
-        new DownloadReplacementAsyncTask(this, listener).execute();
     }
 }
